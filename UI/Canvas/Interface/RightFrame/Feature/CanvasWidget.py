@@ -5,7 +5,7 @@ from PyQt6.QtCore import Qt
 from Dto.RightFrame.DrawingDto import DrawingDTO  # DrawingDTO 임포트
 
 class CanvasWidget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent):
         super().__init__(parent)
 
         # DrawingDTO 인스턴스를 생성하여 선 및 색상 저장
@@ -15,6 +15,12 @@ class CanvasWidget(QWidget):
         self.setMouseTracking(True)  # 마우스 이동 추적
         self.setAutoFillBackground(True)  # 배경색 설정 가능
         self.setStyleSheet("background-color: blue;")  # 배경색 파란색 설정
+
+    # 현재 그려진 선 삭제
+    def canvasClear(self):
+        self.drawing_data.paths.clear()
+        self.drawing_data.current_path.clear()
+        self.update()
 
     def setColor(self, r, g, b):
         self.drawing_data.current_color = QColor(r, g, b)  # QColor 객체로 색상 변경
@@ -42,10 +48,11 @@ class CanvasWidget(QWidget):
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)  # 선 부드럽게 그리기
         
         # 이미 그려진 모든 선을 그리기
-        for path_data in self.drawing_data.paths:
-            pen = QPen(path_data['color'], 2)  # 선 색상과 두께 설정
-            painter.setPen(pen)
-            painter.drawPolyline(*path_data['path'])  # 선 그리기
+        if self.drawing_data.paths:
+            for path_data in self.drawing_data.paths:
+                pen = QPen(path_data['color'], 2)  # 선 색상과 두께 설정
+                painter.setPen(pen)
+                painter.drawPolyline(*path_data['path'])  # 선 그리기
 
         # 현재 그리는 선도 그리기
         if self.drawing_data.current_path:

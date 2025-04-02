@@ -7,7 +7,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..
 sys.path.append(project_root)
 
 # 절대 경로로 모듈 임포트
-from UI.Canvas.Interface.LeftFrame.CircleDrawingWidget.CircleWidget import CircleWidget
+from UI.Canvas.Interface.LeftFrame.Feature.CircleWidget import CircleWidget
 from utils.ColorUtils import randomRGB
 from Dto.LeftFrame.ColorDto import ColorDTO
 

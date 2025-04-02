@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QFrame, QVBoxLayout, QWidget, QLabel, QSizePolicy
 from PyQt6.QtCore import Qt
 
 from UI.Canvas.Interface.RightFrame.Component.RightLable import RightLabel
-from UI.Canvas.Interface.RightFrame.CanvasDrawingWidget.CanvasWidget import CanvasWidget
+from UI.Canvas.Interface.RightFrame.Feature.CanvasWidget import CanvasWidget
 
 class RightFrame(QFrame):
     def __init__(self, parent):

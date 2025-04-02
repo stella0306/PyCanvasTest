@@ -9,7 +9,7 @@ class CircleWidget(QWidget):
 
     def __init__(self, parent, colorDTO):
         super().__init__(parent)
-        self.setFixedSize(100, 100)
+        self.setFixedSize(80, 80)
         self.colorDTO = colorDTO
 
         self.parent = parent
