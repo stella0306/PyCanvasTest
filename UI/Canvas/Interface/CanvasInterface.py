@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QApplication
 from UI.Canvas.Interface.LeftFrame.LeftFrame import LeftFrame
 from UI.Canvas.Interface.RightFrame.RightFrame import RightFrame
+from UI.Canvas.Interface.InfoWindows import infoWindows 
 from UI.Canvas.style.CanvasInterfaceStyle import mainSelf
 
 class CanvasInterface(QMainWindow):
@@ -32,7 +33,7 @@ class CanvasInterface(QMainWindow):
 
         # 연결 추가
         self.leftFrame.colorGrid.colorChanged.connect(self.handleColorChange)
-        self.leftFrame.btnMessage.connect(self.handleCanvasClear)
+        self.leftFrame.btnMessage.connect(self.handleCanvasBtn)
         # 우측 프레임 추가
         self.rightFrame = RightFrame(self)
         self.mainLayout.addWidget(self.rightFrame, 70)
@@ -46,6 +47,6 @@ class CanvasInterface(QMainWindow):
         self.rightFrame.canvasWidget.setColor(r, g, b)
 
     # 현재 그려진 선 삭제
-    def handleCanvasClear(self, btnMessage):
-        self.rightFrame.canvasWidget.canvasClear() if btnMessage == "지우기" else None
+    def handleCanvasBtn(self, btnMessage):
+        self.rightFrame.canvasWidget.canvasClear() if btnMessage == "지우기" else infoWindows(self).exec()
         # print(btnMessage)
