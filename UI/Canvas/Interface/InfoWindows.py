@@ -22,7 +22,8 @@ class infoWindows(QDialog):
 
         # 메인 위젯 설정
         mainWidget = QWidget(self)
-
+        
+        # 레이아웃 생성
         layout = QHBoxLayout(mainWidget)
 
         # 위젯 추가
